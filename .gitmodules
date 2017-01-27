@@ -1,3 +1,6 @@
 [submodule "06Aug2016/polyglot-meetup"]
 	path = 06Aug2016/journey-of-java
 	url = https://github.com/pushkarnk/polyglot-meetup.git
+[submodule "21Jan2017/quicksort-operators"]
+	path = 21Jan2017/quicksort-operators
+	url = https://github.com/pushkarnk/quicksort-operators
