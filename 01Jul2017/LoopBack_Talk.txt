@@ -1,0 +1,3 @@
+Link to the samples used during the talk:
+
+https://github.com/hacksparrow/http-express-loopback
