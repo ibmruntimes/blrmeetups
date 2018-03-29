@@ -1,0 +1,222 @@
+Demo
+
+1. 
+
+  fun main(args: Array<String>) {
+        val name = "World"
+        println(" Hello, $name!")
+    }
+
+2.  class Person {
+    private String name;
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    // toString...  hashCode... equals...  copy...
+}
+
+ public static void main(String[] args) {
+    String name = "Jay";
+    Person person = new Person(name);
+    System.out.println(person.getName()); 
+}
+
+
+Clrt + alt + shift + K Or Cmd + alt + shift + K
+
+
+---
+
+
+3. 
+data class Person(val name: String)
+ 
+fun main(args: Array<String>) {
+        val name : String = "World"
+        val person = Person(name)
+        println(person.name)
+    }
+
+
+4. Functions 
+In Kotlin, functions may be declared at top level in a file, locally inside other functions, as a member function inside a class or object, and as an extension function.
+
+fun sum(a: Int,b: Int): Int{
+            return a+b
+        }
+val getSum = sum (3, 4)
+println(" Sum is $getSum")
+
+or 
+
+fun sum(a: Int, b: Int) = a + b 	// Expression over statement 
+
+
+5. Variables 
+
+Immutable : Read only 
+val a: Int = 1
+val b = 1		// `Int` type is inferred
+
+b = 1 		// will throw compilation error, can’t assign number again
+
+val c: Int		// Type required when no initializer is provided
+c = 1		// definite assignment
+
+
+Mutable : Read/Write 
+var
+
+
+6. String Intropolation 
+
+val a = 10				// type inference
+val b = "a = $a" 			// evaluates to ”a = 10”
+
+val s = "abc"
+val str = "$s.length is ${s.length}"	// evaluates to "abc.length is 3”
+
+val msg = """this is a message
+        written on and sent to $name
+        ...
+        """
+
+
+7. Smart Cast 
+
+val name1 = "Jay"
+
+if (name1 !is String) return
+println(name1.length) 	   // name is automatically cast to String 
+
+
+
+8.  Null Saftey 
+
+var a : String ="abc" 
+a = null 										// compilation error   
+
+var b: String? ="abc"
+b = null 										// Is fine
+
+
+var nonNullable: String = "My string" 			// needs to be initialized 
+var nullable: String?  			
+
+
+
+println(nonNullable.substring(0, 2)) 			// prints the first 2 characters - My
+
+
+println(nullable.length())  					// Compilation error
+-> if (nullable != null) nullable.doStuff() 
+-> nullable?.doStuff()
+
+
+println(nullable?.substring(0, 2))			  // prints the first 2 characters if the string is not null, prints null otherwise
+
+
+println(nullable!!.substring(0,2)) 			 // prints the first 2 characters if the string is not null, else crashes with a NullPointerException. 
+
+
+
+
+9. Lambda Expression
+
+val positiveNumbers = list.filter { x -> x > 0 } 
+
+or simply 
+
+val positiveNumbers = list.filter {it > 0}
+
+ 
+
+10. Extention functions 
+
+package MyStringExtensions
+
+fun String.lastChar(): Char = this.get(this.length - 1)
+println("Kotlin".lastChar())
+
+
+
+11. Collections
+Kotlin introduces easy-to-use collection manipulation functions and functional pipelines for you.
+
+val os = listOf("Android", "iOS", null, "Windowsph")
+
+
+
+os.filterNotNull().sortedBy { it.length }
+        .map { it.toUpperCase() }
+        .forEach { print(it) }
+
+
+12. When expression 
+
+fun process(x : Any) {
+when (x) { 
+	1 -> print("x == 1")
+	2 -> print("x == 2")
+	0, 1 -> print("x == 0 or x == 1")
+	parseInt(s) -> print("s encodes x")
+	in 1..10 -> print("x is in the range")
+	in validNumbers -> print("x is valid")
+	!in 10..20 -> print("x is outside the range") is String -> x.startsWith("prefix")
+	x.isOdd() -> print("x is odd")
+	x.isEven() -> print("x is even")
+	else -> print("otherwise") 
+} 
+}
+
+process(1)  
+process(8)
+process(15)
+process(“Hello”)
+process(StringBuilder())
+
+
+13. Loop 
+
+for (item in collection) print(item) 
+
+
+
+for (i in array.indices) print(array[i])
+
+
+ 
+for ((index, value) in array.withIndex()) { 	
+	println("the element at $index is $value") 
+} 
+
+
+
+14. Class and Inheritance 
+Inherit from java's equivalent of Object -> Any , by default all are final, Inheritance is enabled by prefixing "open"
+
+open class A { 
+	open fun f() { print (“A”) }
+	fun a () { print (“a”) }
+} 
+
+interface B { 					// interface members are open by default
+	fun f() { print (“B”) }
+	fun b() { print("b") 
+} 
+
+class C() : A(), B {					// Compiler requires f() to be overridded:
+	 override fun f() { 
+		 super<A>.f() 			// call to A.f() 
+		 super<B>.f() 			// call to B.f() 
+	}
+}
